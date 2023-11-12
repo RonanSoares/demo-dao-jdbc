@@ -4,18 +4,17 @@ import java.io.Serializable;
 
 // Implementa o seriazable para q o objeto seja transformado em sequencia de bits. 
 // E possa trafegar em rede e salvar em arquivos
-public class Departament implements Serializable {
+public class Department implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private String name;
 
-	Departament() {
+	Department() {
 	}
 
-	public Departament(Integer id, String name) {
-		super();
+	public Department(Integer id, String name) {
 		this.id = id;
 		this.name = name;
 	}
@@ -52,7 +51,7 @@ public class Departament implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Departament other = (Departament) obj;
+		Department other = (Department) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -63,6 +62,6 @@ public class Departament implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Id          : " + id + "\n" + "Nome        : " + name;
+		return id + "\n" + "Nome        : " + name;
 	}
 }
