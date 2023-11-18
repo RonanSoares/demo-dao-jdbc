@@ -2,16 +2,14 @@ package model.entities;
 
 import java.io.Serializable;
 
-// Implementa o seriazable para q o objeto seja transformado em sequencia de bits. 
-// E possa trafegar em rede e salvar em arquivos
 public class Department implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private String name;
-
-	Department() {
+	
+	public Department() {
 	}
 
 	public Department(Integer id, String name) {
@@ -62,6 +60,6 @@ public class Department implements Serializable {
 
 	@Override
 	public String toString() {
-		return id + "\n" + "Nome        : " + name;
+		return "DepartmentDao [id=" + id + ", name=" + name + "]";
 	}
 }
