@@ -13,6 +13,8 @@ public class Program {
 		
 		SellerDao sellerDao = DaoFactory.createSellerDao(); //O programa não conhece a implementação só a interface.
 		
+		System.out.println("=== TESTE 1: Vendedor Procura por Id ===");
+		
 		Seller seller = sellerDao.findById(3);
 		
 		//System.out.println("DEPARTAMENTO");
