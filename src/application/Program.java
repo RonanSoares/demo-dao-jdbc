@@ -30,12 +30,23 @@ public class Program {
 		
 		System.out.println("======================================================");
 		
-		System.out.println("=== TESTE 2: Vendedor Procura por Departamento ===");
+		System.out.println("=== TESTE 2: Procura vendedor por Departamento ===");
 		System.out.println("------------------------------------------------------");
 		Department department = new Department(2, null);
 		List<Seller> list = sellerDao.findByDepartment(department);
 		
 		for(Seller obj : list) {
+			System.out.println(obj);
+			System.out.println("======================================================");
+		}
+		
+System.out.println("======================================================");
+		
+		System.out.println("=== TESTE 3: Procura todos vendedores ===");
+		System.out.println("------------------------------------------------------");
+		List<Seller> list2 = sellerDao.findAll();
+		
+		for(Seller obj : list2) {
 			System.out.println(obj);
 			System.out.println("======================================================");
 		}
