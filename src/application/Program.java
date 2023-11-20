@@ -51,12 +51,20 @@ public class Program {
 			System.out.println("======================================================");
 		}
 
-		System.out.println("\n=== TEST 4: seller insert =====");
+		System.out.println("\n=== TESTE 4: Insere vendedor =====");
 		Seller newSeller = new Seller(null, "Nicolly Honorato David", "greg@gmail.com", new Date(), 4000.0, department);
 		sellerDao.insert(newSeller);
 		System.out.println("Inserido! Novo Id = " + newSeller.getId());
-		
-			System.out.println("======================================================");
-		
+
+		System.out.println("======================================================");
+
+		System.out.println("\n=== TESTE 5: Atualiza vendedor =====");
+		seller = sellerDao.findById(1);
+		seller.setName("Maria Silva");
+		sellerDao.update(seller);
+		System.out.println("Atualização completada com sucesso");
+
+		System.out.println("======================================================");
+
 	}
 }
