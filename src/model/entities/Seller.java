@@ -3,26 +3,26 @@ package model.entities;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Seller implements Serializable{
+public class Seller implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
 	private String name;
 	private String email;
-	private Date BirthDate;
+	private Date birthDate;
 	private Double baseSalary;
 	
 	private Department department;
 	
-	public Seller() {		
+	public Seller() {
 	}
 
 	public Seller(Integer id, String name, String email, Date birthDate, Double baseSalary, Department department) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
-		this.BirthDate = birthDate;
+		this.birthDate = birthDate;
 		this.baseSalary = baseSalary;
 		this.department = department;
 	}
@@ -52,11 +52,11 @@ public class Seller implements Serializable{
 	}
 
 	public Date getBirthDate() {
-		return BirthDate;
+		return birthDate;
 	}
 
 	public void setBirthDate(Date birthDate) {
-		BirthDate = birthDate;
+		this.birthDate = birthDate;
 	}
 
 	public Double getBaseSalary() {
@@ -102,11 +102,7 @@ public class Seller implements Serializable{
 
 	@Override
 	public String toString() {
-		return    "Id vendedor : " + id + "\n"
-				+ "Nome Vend   : " + name + "\n"
-				+ "Email vend  : " + email + "\n"
-				+ "Data Aniv.  : " + BirthDate + "\n"
-				+ "Salário     : " + baseSalary + "\n"
-				+ "Departamento: " + department;
+		return "Seller [id=" + id + ", name=" + name + ", email=" + email + ", birthDate=" + birthDate + ", baseSalary="
+				+ baseSalary + ", department=" + department + "]";
 	}
 }
