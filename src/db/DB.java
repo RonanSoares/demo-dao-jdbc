@@ -10,9 +10,11 @@ import java.sql.Statement;
 import java.util.Properties;
 
 public class DB {
-
+	
+	
 	private static Connection conn = null;
 	
+	// Método para conectar com o BD
 	public static Connection getConnection() {
 		if (conn == null) {
 			try {
