@@ -17,9 +17,11 @@ import model.entities.Department;
 import model.entities.Seller;
 
 public class SellerDaoJDBC implements SellerDao {
-
+	
+	
 	private Connection conn;
-
+	
+	// Dao tem uma dependencia com a conexão.
 	public SellerDaoJDBC(Connection conn) {
 		this.conn = conn;
 	}
@@ -118,17 +120,18 @@ public class SellerDaoJDBC implements SellerDao {
 		ResultSet rs = null;
 		try {
 			ps = conn.prepareStatement(
-					"SELECT seller.*,department.Name as DepName " + "FROM seller INNER JOIN department "
-							+ "ON seller.DepartmentId = department.Id " + "WHERE seller.Id = ?");
+					"SELECT seller.*,department.Name as DepName " 
+					+ "FROM seller INNER JOIN department "
+					+ "ON seller.DepartmentId = department.Id " 
+					+ "WHERE seller.Id = ?");
 
 			ps.setInt(1, id);
-			rs = ps.executeQuery();
-
+			rs = ps.executeQuery();				
+			// Testa se veio algun resultado.
 			if (rs.next()) {
-				Department dep = instantiateDepartment(rs);
+				Department dep = instantiateDepartment(rs);  // Chama a função dep.
 				Seller obj = instantiateSeller(rs, dep);
 				return obj;
-
 			}
 			return null;
 
@@ -137,9 +140,11 @@ public class SellerDaoJDBC implements SellerDao {
 		} finally {
 			DB.closeStatement(ps);
 			DB.closeResultSet(rs);
+			// Conexão fica aberta, pois pode haver outras operações.
 		}
 	}
-
+	
+	// Função instantiateSeller
 	private Seller instantiateSeller(ResultSet rs, Department dep) throws SQLException {
 		Seller obj = new Seller();
 		obj.setId(rs.getInt("Id"));
@@ -150,7 +155,8 @@ public class SellerDaoJDBC implements SellerDao {
 		obj.setDepartment(dep); // Associação com Department
 		return obj;
 	}
-
+	
+	// Função instantiateDepartment
 	private Department instantiateDepartment(ResultSet rs) throws SQLException {
 		Department dep = new Department();
 		dep.setId(rs.getInt("DepartmentId"));
@@ -203,8 +209,11 @@ public class SellerDaoJDBC implements SellerDao {
 		ResultSet rs = null;
 		try {
 			ps = conn.prepareStatement(
-					"SELECT seller.*,department.Name as DepName " + "FROM seller INNER JOIN department "
-							+ "ON seller.DepartmentId = department.Id " + "WHERE DepartmentId = ? " + "ORDER BY Name");
+					"SELECT seller.*,department.Name as DepName " 
+					+ "FROM seller INNER JOIN department "
+					+ "ON seller.DepartmentId = department.Id " 
+					+ "WHERE DepartmentId = ? " 
+					+ "ORDER BY Name");
 
 			ps.setInt(1, department.getId());
 			rs = ps.executeQuery();
@@ -213,16 +222,15 @@ public class SellerDaoJDBC implements SellerDao {
 			List<Seller> list = new ArrayList<>();
 
 			// Estrutura Map para não repetir os departamentos.
-			Map<Integer, Department> map = new HashMap<>(); // Cria o map vazio
+			Map<Integer, Department> map = new HashMap<>(); // Cria a estrutura map vazio
 
 			while (rs.next()) {
-
 				// guarda no map todo departamento que instanciar.
 				Department dep = map.get(rs.getInt("DepartmentId"));
 
 				if (dep == null) {
 					dep = instantiateDepartment(rs); // Se for nulo instancia o departamento.
-					map.put(rs.getInt("DepartmentId"), dep); // Salva o departamento no dep.
+					map.put(rs.getInt("DepartmentId"), dep); // Salva o departamento no map.
 				}
 
 				Seller obj = instantiateSeller(rs, dep);

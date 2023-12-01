@@ -12,8 +12,22 @@ import model.entities.Seller;
 public class Program {
 
 	public static void main(String[] args) {
+		
+		SellerDao sellerDao = DaoFactory.createSellerDao();
+		
+		System.out.println("=== TESTE 1: Procura vendedor por Id ===");
+		Seller seller = sellerDao.findById(3);		
+		System.out.println(seller);
+		
+		System.out.println("===================================================");
+		System.out.println("=== TESTE 2: Procura vendedor por departamento ===");
+		Department departament = new Department(2, null);
+		List<Seller> list = sellerDao.findByDepartment(departament);
+		for(Seller obj : list) {
+			System.out.println(obj);
+		}
 
-		Scanner sc = new Scanner(System.in);
+/*		Scanner sc = new Scanner(System.in);
 
 		SellerDao sellerDao = DaoFactory.createSellerDao(); // O programa não conhece a implementação só a interface.
 
@@ -75,6 +89,6 @@ public class Program {
 		sellerDao.deleteById(id);
 		System.out.println("Registro apagado com sucesso!");
 
-		sc.close();
+		sc.close();    */
 	}
 }

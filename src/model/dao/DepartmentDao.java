@@ -12,9 +12,3 @@ public interface DepartmentDao {
 	Department findById(Integer id); // método para consultar um Id no BD. Se encontrar retorna. senão retorna nulo
 	List<Department> findAll();      // Operação para retornar uma lista com todos os departamentos.
 }
-
-   
- 
-       
-    
-       
